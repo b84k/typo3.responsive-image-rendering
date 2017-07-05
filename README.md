@@ -80,9 +80,8 @@ Something like this
     
     <vf:image fileReference="{resource}"
                responsiveSizes="{768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}"
-               defaultMaxWidth="750" width="50" aspectRatioWidth="16"
-               aspectRatioHeight="9" alt="Alternative" title="Title"
-               />
+               defaultMaxWidth="750" width="50" aspectRatio="16x9" alt="Alternative"
+               title="Title" />
 
 output like this.
 
@@ -91,8 +90,7 @@ output like this.
              fileadmin/_processed_/6/d/csm_****************_dff6667f60.jpg 1024w,
              fileadmin/_processed_/6/d/csm_****************_e828fac558.jpg 1280w,
              fileadmin/_processed_/6/d/csm_****************_1ba51923e9.jpg 1920w"
-             alt="Alternative" title="Title" width="50%"
-    >
+             alt="Alternative" title="Title" width="50%">
 
 Just add plainCssClass and remove attributes, who are ignored if clearCssClass is set.
 
@@ -100,9 +98,7 @@ Just add plainCssClass and remove attributes, who are ignored if clearCssClass i
 
     <vf:image fileReference="{resource}"
                responsiveSizes="{768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}"
-               defaultMaxWidth="750" aspectRatioWidth="16" aspectRatioHeight="9"
-               plainCssClass="1"
-    />
+               defaultMaxWidth="750" aspectRatio="16x9" plainCssClass="1" />
 
 This settings created css-class like this.
 

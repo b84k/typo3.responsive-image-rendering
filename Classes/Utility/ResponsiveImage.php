@@ -211,7 +211,7 @@ class ResponsiveImage
         $this->responsiveImages = [];
         foreach ($this->responsiveSizes as $viewPort => $size) {
             $this->responsiveImages[$viewPort] = $this->processImage($this->getProcessInstruction($crop, (int)$size));
-            $this->processedImages[$size] = $this->responsiveImages[$viewPort];
+            $this->processedImages['responsive'][$size] = $this->responsiveImages[$viewPort];
         }
     }
 
