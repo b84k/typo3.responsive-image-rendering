@@ -1,0 +1,35 @@
+{
+  "name": "viktor-firus/responsive-image-rendering",
+  "type": "typo3-cms-extension",
+  "description": "Rendering responsive images with ViewHelper in Fluid-Templates.",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "responsive",
+    "images"
+  ],
+  "homepage": "",
+  "authors": [
+    {
+      "name": "Viktor Firus",
+      "role": "Developer",
+      "homepage": ""
+    }
+  ],
+  "license": [
+    "GPL-3.0+"
+  ],
+  "require": {
+    "typo3/cms-core": "8.7.0 - 8.7.99",
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ViktorFirus\\ResponsiveImageRendering\\": "Classes"
+    }
+  },
+  "replace": {
+    "responsive_image_rendering": "self.version",
+    "typo3-ter/responsive-image-rendering": "self.version"
+  }
+}
