@@ -107,6 +107,16 @@ class ResponsiveImage
     protected $processedImages = [];
 
     /**
+     * @var int
+     */
+    protected $resourceWidth;
+
+    /**
+     * @var int
+     */
+    protected $resourceHeight;
+
+    /**
      * @param FileReference $fileReference
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
@@ -116,6 +126,11 @@ class ResponsiveImage
         $this->setFile($fileReference);
         $this->setResponsiveSizes($responsiveSizes);
         $this->setDefaultMaxWidth($defaultMaxWidth);
+
+        $imageSize = getimagesize(PATH_site . $this->fileReference->getOriginalFile()->getPublicUrl());
+
+        $this->resourceWidth = $imageSize[0];
+        $this->resourceHeight = $imageSize[1];
     }
 
     /**
@@ -361,25 +376,22 @@ class ResponsiveImage
             ? []
             : current($crop);
 
-        return $this->createCrop($crop);
-    }
 
-    /**
-     * @param array $crop
-     *
-     * @return string
-     */
-    protected function createCrop(array $crop): string
-    {
-        $width = (float)$this->fileReference->getProperty('width');
-        $height = (float)$this->fileReference->getProperty('height');
+        $cropX = (float)$crop['cropArea']['x'] * $this->resourceWidth;
+        $cropY = (float)$crop['cropArea']['y'] * $this->resourceHeight;
+        $cropWidth = (float)$crop['cropArea']['width'];
+        if ($cropWidth == 0) {
+            $cropWidth = 1;
+        }
+        $cropWidth = $cropWidth * $this->resourceWidth;
+        $cropHeight = (float)$crop['cropArea']['height'];
+        if ($cropHeight == 0) {
+            $cropHeight = 1;
+        }
+        $cropHeight = $cropHeight * $this->resourceHeight;
 
-        $cropX = (float)$crop['cropArea']['x'] * $width;
-        $cropY = (float)$crop['cropArea']['y'] * $height;
-        $cropWidth = (float)$crop['cropArea']['width'] * $width;
-        $cropHeight = (float)$crop['cropArea']['height'] * $height;
         if ($this->aspectRatioWidth == 0 || $this->aspectRatioHeight == 0) {
-            return $this->getCropInstruction($cropX, $cropY, $cropWidth, $cropHeight);
+            return $this->createCropInstruction($cropX, $cropY, $cropWidth, $cropHeight);
         }
 
         /*
@@ -393,16 +405,16 @@ class ResponsiveImage
             $newCropHeight = $cropWidth * $aspectRatio;
             $y = (($cropHeight - $newCropHeight) / 2) + $cropY;
 
-            return $this->getCropInstruction($cropX, $y, $cropWidth, $newCropHeight);
+            return $this->createCropInstruction($cropX, $y, $cropWidth, $newCropHeight);
         }
         if ($aspectRatioOfResource < $aspectRatio) {
             $newCropWidth = $cropHeight * (1 / $aspectRatio);
             $x = (($cropWidth - $newCropWidth) / 2) + $cropX;
 
-            return $this->getCropInstruction($x, $cropY, $newCropWidth, $cropHeight);
+            return $this->createCropInstruction($x, $cropY, $newCropWidth, $cropHeight);
         }
 
-        return $this->getCropInstruction($cropX, $cropY, $cropWidth, $cropHeight);
+        return $this->createCropInstruction($cropX, $cropY, $cropWidth, $cropHeight);
     }
 
     /**
@@ -413,7 +425,7 @@ class ResponsiveImage
      *
      * @return string
      */
-    protected function getCropInstruction(float $cropX, float $cropY, float $cropWidth, float $cropHeight): string
+    protected function createCropInstruction(float $cropX, float $cropY, float $cropWidth, float $cropHeight): string
     {
         return json_encode([
             'x' => $cropX,
