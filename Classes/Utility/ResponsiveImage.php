@@ -312,9 +312,11 @@ class ResponsiveImage
      */
     public function getImgTag(): string
     {
-        if (empty($this->defaultImage) || empty($this->responsiveImages)) {
+        // Only return an empty string if both the default image and the responsive images are empty
+        if (empty($this->defaultImage) && empty($this->responsiveImages)) {
             return '';
         }
+
         /** @var TagBuilder $tagBuilder */
         $tagBuilder = $this->objectManager->get(TagBuilder::class);
         $tagBuilder->setTagName('img');
