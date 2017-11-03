@@ -10,93 +10,65 @@ Fluid-ViewHelper for rendering your images as responsive images.
 **Required**: yes
 
 #### responsiveSizes
-
-Type: array
-
-Description: The various sizes and the proper viewports.
-
-Required: no
-
-Ex. {768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}
+**Type**: array<br/>
+**Description**: The various sizes and the proper viewports.<br/>
+**Required**: no<br/>
+**Example**<br/>
+```responsiveSizes="{768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}"```
 
 #### defaultMaxWidth
-
-Type: integer
-
-Description: Maximum size of the default image without view-port.
- 
-Required: no
+**Type**: integer<br/>
+**Description**: Maximum size of the default image without view-port.<br/>
+**Required**: no
 
 #### aspectRatio
-
-Type: string (WxH, ex. 16x9)
-
-Description: Crop image to defined aspect ratio. Every image will have the fix configured aspect ratio. The crop instructions from FAL entry will be fitted to the aspect ratio.
-
-Required: no
+**Type**: string (WxH, ex. 16x9)<br/>
+**Description**: Crop image to defined aspect ratio. Every image will have the fix configured aspect ratio. The crop instructions from FAL entry will be fitted to the aspect ratio.<br/>
+**Required**: no
 
 #### width
-
-Type: string
-
-Description: Width of image.
-
-Required: no
-
-Ex.
-* 100
-* 100px
-* 100%
+**Type**: string<br/>
+**Description**: Width of image.<br/>
+**Required**: no<br/>
+**Example**
+```
+width="100"
+width="100px"
+width="100%"
+```
 
 #### alt
-
-Type: string
-
-Description: Alternate text for image. The FAL entry alternate text has priority.
-
-Required: no
+**Type**: string<br/>
+**Description**: Alternate text for image. The FAL entry alternate text has priority.<br/>
+**Required**: no
 
 #### title
-
-Type: string
-
-Description: Title for image. The FAL entry title has priority.
-
-Required: no
+**Type**: string<br/>
+**Description**: Title for image. The FAL entry title has priority.<br/>
+**Required**: no
 
 #### plainCssClass
-
-Type: boolean
-
-Description: Output a css-class reference for the image. Can be used for background. Title, alt and width will be ignored, if set.
-
-Default: false
-
-Required: no
+**Type**: boolean<br/>
+**Description**: Output a css-class reference for the image. Can be used for background. Title, alt and width will be ignored, if set.<br/>
+**Default**: false<br/>
+**Required**: no
 
 ### class
-Type: string
-
-Description: Class attribute for the image.
-
-Required: no
+**Type**: string<br/>
+**Description**: Class attribute for the image.<br/>
+**Required**: no
 
 ### style
-Type: string
-
-Description: Style attribute for the image.
-
-Required: no
+**Type**: string<br/>
+**Description**: Style attribute for the image.<br/>
+**Required**: no
 
 ### absolute
-Type: boolean
-
-Description: Determines if the link to the image resources should be an absolute or relative path.
-
-Required: no
+**Type**: boolean<br/>
+**Description**: Determines if the link to the image resources should be an absolute or relative path.<br/>
+**Required**: no
 
 ## Examples
-
 Something like this
 
     {namespace vf = ViktorFirus\ResponsiveImageRendering\ViewHelpers}
