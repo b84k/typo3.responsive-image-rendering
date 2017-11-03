@@ -5,75 +5,70 @@ Fluid-ViewHelper for rendering your images as responsive images.
 ## Syntax
 
 #### fileReference
-
-Type: \TYPO3\CMS\Core\Resource\FileReference
-
-Description: File reference of the image to display.
-
-Required: yes
+**Type**: \TYPO3\CMS\Core\Resource\FileReference<br/>
+**Description**: File reference of the image to display.<br/>
+**Required**: yes
 
 #### responsiveSizes
-
-Type: array
-
-Description: The various sizes and the proper viewports.
-
-Required: yes
-
-Ex. {768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}
+**Type**: array<br/>
+**Description**: The various sizes and the proper viewports.<br/>
+**Required**: no<br/>
+**Example**<br/>
+```responsiveSizes="{768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}"```
 
 #### defaultMaxWidth
-
-Type: integer
-
-Description: Maximum size of the default image without view-port.
- 
-Required: yes
+**Type**: integer<br/>
+**Description**: Maximum size of the default image without view-port.<br/>
+**Required**: no
 
 #### aspectRatio
-
-Type: string (WxH, ex. 16x9)
-
-Description: Crop image to defined aspect ratio. Every image will have the fix configured aspect ratio. The crop instructions from FAL entry will be fitted to the aspect ratio.
-
-Required: no
+**Type**: string (WxH, ex. 16x9)<br/>
+**Description**: Crop image to defined aspect ratio. Every image will have the fix configured aspect ratio. The crop instructions from FAL entry will be fitted to the aspect ratio.<br/>
+**Required**: no
 
 #### width
-
-Type: integer
-
-Description: Width of image in %.
-
-Required: no
+**Type**: string<br/>
+**Description**: Width of image.<br/>
+**Required**: no<br/>
+**Example**
+```
+width="100"
+width="100px"
+width="100%"
+```
 
 #### alt
-
-Type: string
-
-Description: Alternate text for image. The FAL entry alternate text has priority.
-
-Required: no
+**Type**: string<br/>
+**Description**: Alternate text for image. The FAL entry alternate text has priority.<br/>
+**Required**: no
 
 #### title
-
-Type: string
-
-Description: Title for image. The FAL entry title has priority.
-
-Required: no
+**Type**: string<br/>
+**Description**: Title for image. The FAL entry title has priority.<br/>
+**Required**: no
 
 #### plainCssClass
+**Type**: boolean<br/>
+**Description**: Output a css-class reference for the image. Can be used for background. Title, alt and width will be ignored, if set.<br/>
+**Default**: false<br/>
+**Required**: no
 
-Type: boolean
+### class
+**Type**: string<br/>
+**Description**: Class attribute for the image.<br/>
+**Required**: no
 
-Description: Output a css-class reference for the image. Can be used for background. Title, alt and width will be ignored, if set.
+### style
+**Type**: string<br/>
+**Description**: Style attribute for the image.<br/>
+**Required**: no
 
-Default: false
-
-Required: no
+### absolute
+**Type**: boolean<br/>
+**Description**: Determines if the link to the image resources should be an absolute or relative path.<br/>
+**Required**: no
 
 ## Examples
-
 Something like this
 
     {namespace vf = ViktorFirus\ResponsiveImageRendering\ViewHelpers}

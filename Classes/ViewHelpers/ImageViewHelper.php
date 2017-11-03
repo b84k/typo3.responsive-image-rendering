@@ -18,10 +18,10 @@
 
 namespace ViktorFirus\ResponsiveImageRendering\ViewHelpers;
 
-use ViktorFirus\ResponsiveImageRendering\Utility\ResponsiveImage;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use ViktorFirus\ResponsiveImageRendering\Utility\ResponsiveImage;
 
 /**
  * @author Viktor Firus <viktor@firus.eu>
@@ -46,23 +46,30 @@ class ImageViewHelper extends AbstractViewHelper
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
      * @param string        $aspectRatio
-     * @param int           $width
+     * @param string        $width
      * @param bool          $plainCssClass
      * @param string        $alt
      * @param string        $title
+     * @param string        $class
+     * @param string        $style
+     * @param bool          $absolute
      *
      * @return string
      */
     public function render(
         FileReference $fileReference,
-        array $responsiveSizes,
-        int $defaultMaxWidth,
+        array $responsiveSizes = [],
+        int $defaultMaxWidth = 0,
         string $aspectRatio = '0x0',
-        int $width = 0,
+        string $width = '0',
         bool $plainCssClass = false,
         string $alt = '',
-        string $title = ''
-    ): string {
+        string $title = '',
+        string $class = '',
+        string $style = '',
+        bool $absolute = false
+    ): string
+    {
         list($aspectRatioWidth, $aspectRatioHeight) = $this->parseAspectRatio($aspectRatio);
 
         /** @var ResponsiveImage $responsiveImage */
@@ -72,16 +79,21 @@ class ImageViewHelper extends AbstractViewHelper
             $responsiveSizes,
             $defaultMaxWidth
         );
+
         if ($aspectRatioWidth > 0 && $aspectRatioHeight > 0) {
             $responsiveImage->setAspectRatio($aspectRatioWidth, $aspectRatioHeight);
         }
         $responsiveImage->render();
+
         if ($plainCssClass) {
             return $responsiveImage->getCssClassName();
         }
         $responsiveImage->setAlternative($alt);
         $responsiveImage->setTitle($title);
         $responsiveImage->setWidth($width);
+        $responsiveImage->setClass($class);
+        $responsiveImage->setStyle($style);
+        $responsiveImage->setAbsolute(boolval($absolute));
 
         return $responsiveImage->getImgTag();
     }
