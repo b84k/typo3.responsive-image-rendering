@@ -133,8 +133,8 @@ class ResponsiveImage
 
     /**
      * @param FileReference $fileReference
-     * @param array         $responsiveSizes
-     * @param int           $defaultMaxWidth
+     * @param array $responsiveSizes
+     * @param int $defaultMaxWidth
      */
     public function __construct(FileReference $fileReference, array $responsiveSizes = [], int $defaultMaxWidth = 0)
     {
@@ -142,10 +142,22 @@ class ResponsiveImage
         $this->setResponsiveSizes($responsiveSizes);
         $this->setDefaultMaxWidth($defaultMaxWidth);
 
-        $imageSize = getimagesize(PATH_site . $this->fileReference->getOriginalFile()->getPublicUrl());
+        $filePath = $this->fileReference->getOriginalFile()->getPublicUrl();
+        $url = parse_url($filePath);
 
-        $this->resourceWidth = $imageSize[0];
-        $this->resourceHeight = $imageSize[1];
+        // Set the default width and height for the resource
+        $this->resourceWidth = 1;
+        $this->resourceHeight = 1;
+
+        // Get resource width and height only, if the file path is not an URL
+        if (!isset($url['scheme']) && !isset($url['host'])) {
+            $filePath = PATH_site . $filePath;
+            if (file_exists($filePath)) {
+                $imageSize = getimagesize($filePath);
+                $this->resourceWidth = $imageSize[0];
+                $this->resourceHeight = $imageSize[1];
+            }
+        }
     }
 
     /**
@@ -397,8 +409,8 @@ class ResponsiveImage
     }
 
     /**
-     * @param int    $width
-     * @param int    $height
+     * @param int $width
+     * @param int $height
      * @param string $crop
      *
      * @return array
@@ -524,7 +536,7 @@ class ResponsiveImage
 
     /**
      * @param string $crop
-     * @param int    $maxWidth
+     * @param int $maxWidth
      *
      * @return array
      */
