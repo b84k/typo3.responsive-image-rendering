@@ -18,10 +18,10 @@
 
 namespace ViktorFirus\ResponsiveImageRendering\ViewHelpers;
 
-use ViktorFirus\ResponsiveImageRendering\Utility\ResponsiveImage;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use ViktorFirus\ResponsiveImageRendering\Utility\ResponsiveImage;
 
 /**
  * @author Viktor Firus <viktor@firus.eu>
@@ -43,13 +43,13 @@ class ImageViewHelper extends AbstractViewHelper
 
     /**
      * @param FileReference $fileReference
-     * @param array         $responsiveSizes
-     * @param int           $defaultMaxWidth
-     * @param string        $aspectRatio
-     * @param int           $width
-     * @param bool          $plainCssClass
-     * @param string        $alt
-     * @param string        $title
+     * @param array $responsiveSizes
+     * @param int $defaultMaxWidth
+     * @param string $aspectRatio
+     * @param int $width
+     * @param bool $plainCssClass
+     * @param string $alt
+     * @param string $title
      *
      * @return string
      */
@@ -62,7 +62,8 @@ class ImageViewHelper extends AbstractViewHelper
         bool $plainCssClass = false,
         string $alt = '',
         string $title = ''
-    ): string {
+    ): string
+    {
         list($aspectRatioWidth, $aspectRatioHeight) = $this->parseAspectRatio($aspectRatio);
 
         /** @var ResponsiveImage $responsiveImage */
