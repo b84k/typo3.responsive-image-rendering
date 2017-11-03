@@ -18,7 +18,7 @@ Type: array
 
 Description: The various sizes and the proper viewports.
 
-Required: yes
+Required: no
 
 Ex. {768w: 768, 1024w: 1024, 1280w: 1280, 1920w: 1920}
 
@@ -28,7 +28,7 @@ Type: integer
 
 Description: Maximum size of the default image without view-port.
  
-Required: yes
+Required: no
 
 #### aspectRatio
 
@@ -40,11 +40,16 @@ Required: no
 
 #### width
 
-Type: integer
+Type: string
 
-Description: Width of image in %.
+Description: Width of image.
 
 Required: no
+
+Ex.
+* 100
+* 100px
+* 100%
 
 #### alt
 
@@ -69,6 +74,27 @@ Type: boolean
 Description: Output a css-class reference for the image. Can be used for background. Title, alt and width will be ignored, if set.
 
 Default: false
+
+Required: no
+
+### class
+Type: string
+
+Description: Class attribute for the image.
+
+Required: no
+
+### style
+Type: string
+
+Description: Style attribute for the image.
+
+Required: no
+
+### absolute
+Type: boolean
+
+Description: Determines if the link to the image resources should be an absolute or relative path.
 
 Required: no
 
