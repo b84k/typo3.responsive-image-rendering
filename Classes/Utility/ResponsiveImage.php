@@ -335,14 +335,15 @@ class ResponsiveImage
             $tagBuilder->addAttribute('srcset', implode(', ', $srcset));
         }
 
+        // Add alt attribute
         $alt = $this->fileReference->getProperty('alternative') ?: $this->alternative;
         $tagBuilder->addAttribute('alt', $alt);
-        $title = $this->fileReference->getProperty('title');
-        if ($title) {
-            $tagBuilder->addAttribute('title', $title);
-        } elseif ($this->title) {
-            $tagBuilder->addAttribute('title', $this->title);
-        }
+
+        // Add title attribute
+        $title = $this->fileReference->getProperty('title') ?: $this->title;
+        $tagBuilder->addAttribute('title', $title);
+
+        // Add width attribute
         if ($this->width > 0) {
             $tagBuilder->addAttribute('width', $this->width . '%');
         }
@@ -352,7 +353,7 @@ class ResponsiveImage
             $tagBuilder->addAttribute('class', $this->class);
         }
 
-        // Add style
+        // Add style attribute
         if (!empty($this->style)) {
             $tagBuilder->addAttribute('style', $this->style);
         }
