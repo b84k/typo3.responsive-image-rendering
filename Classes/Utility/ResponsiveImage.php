@@ -92,9 +92,9 @@ class ResponsiveImage
     protected $title = '';
 
     /**
-     * @var int
+     * @var string
      */
-    protected $width = 0;
+    protected $width = '0';
 
     /**
      * @var array
@@ -228,9 +228,17 @@ class ResponsiveImage
     }
 
     /**
-     * @param int $width
+     * @return string
      */
-    public function setWidth(int $width)
+    public function getWidth(): string
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param string $width
+     */
+    public function setWidth(string $width)
     {
         $this->width = $width;
     }
@@ -359,7 +367,7 @@ class ResponsiveImage
 
         // Add width attribute
         if ($this->width > 0) {
-            $tagBuilder->addAttribute('width', $this->width . '%');
+            $tagBuilder->addAttribute('width', $this->width);
         }
 
         // Add class attribute

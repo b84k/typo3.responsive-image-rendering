@@ -46,7 +46,7 @@ class ImageViewHelper extends AbstractViewHelper
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
      * @param string        $aspectRatio
-     * @param int           $width
+     * @param string        $width
      * @param bool          $plainCssClass
      * @param string        $alt
      * @param string        $title
@@ -61,7 +61,7 @@ class ImageViewHelper extends AbstractViewHelper
         array $responsiveSizes = [],
         int $defaultMaxWidth = 0,
         string $aspectRatio = '0x0',
-        int $width = 0,
+        string $width = '0',
         bool $plainCssClass = false,
         string $alt = '',
         string $title = '',
