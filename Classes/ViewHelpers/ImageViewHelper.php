@@ -52,6 +52,7 @@ class ImageViewHelper extends AbstractViewHelper
      * @param string        $title
      * @param string        $class
      * @param string        $style
+     * @param bool          $absolute
      *
      * @return string
      */
@@ -65,7 +66,8 @@ class ImageViewHelper extends AbstractViewHelper
         string $alt = '',
         string $title = '',
         string $class = '',
-        string $style = ''
+        string $style = '',
+        bool $absolute = false
     ): string
     {
         list($aspectRatioWidth, $aspectRatioHeight) = $this->parseAspectRatio($aspectRatio);
@@ -91,6 +93,7 @@ class ImageViewHelper extends AbstractViewHelper
         $responsiveImage->setWidth($width);
         $responsiveImage->setClass($class);
         $responsiveImage->setStyle($style);
+        $responsiveImage->setAbsolute(boolval($absolute));
 
         return $responsiveImage->getImgTag();
     }

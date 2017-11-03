@@ -127,6 +127,11 @@ class ResponsiveImage
     protected $style = '';
 
     /**
+     * @var bool
+     */
+    protected $absolute = false;
+
+    /**
      * @param FileReference $fileReference
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
@@ -251,6 +256,22 @@ class ResponsiveImage
     }
 
     /**
+     * @return bool
+     */
+    public function getAbsolute(): bool
+    {
+        return $this->absolute;
+    }
+
+    /**
+     * @param bool $absolute
+     */
+    public function setAbsolute(bool $absolute)
+    {
+        $this->absolute = $absolute;
+    }
+
+    /**
      * @return array
      */
     public function getProcessedImages(): array
@@ -297,7 +318,14 @@ class ResponsiveImage
         /** @var TagBuilder $tagBuilder */
         $tagBuilder = $this->objectManager->get(TagBuilder::class);
         $tagBuilder->setTagName('img');
-        $tagBuilder->addAttribute('src', $this->defaultImage);
+
+        // Add src attribute
+        $src = $this->defaultImage;
+        if ($this->absolute) {
+            $src = GeneralUtility::getIndpEnv('TYPO3_REQUEST_HOST') . '/' . $src;
+        }
+        $tagBuilder->addAttribute('src', $src);
+
         $srcset = [];
         foreach ($this->responsiveImages as $viewPort => $responsiveImage) {
             $srcset[] = $responsiveImage . ' ' . $viewPort;
