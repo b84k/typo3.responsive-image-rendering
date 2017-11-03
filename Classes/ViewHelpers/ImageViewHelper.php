@@ -43,14 +43,15 @@ class ImageViewHelper extends AbstractViewHelper
 
     /**
      * @param FileReference $fileReference
-     * @param array $responsiveSizes
-     * @param int $defaultMaxWidth
-     * @param string $aspectRatio
-     * @param int $width
-     * @param bool $plainCssClass
-     * @param string $alt
-     * @param string $title
-     * @param string $class
+     * @param array         $responsiveSizes
+     * @param int           $defaultMaxWidth
+     * @param string        $aspectRatio
+     * @param int           $width
+     * @param bool          $plainCssClass
+     * @param string        $alt
+     * @param string        $title
+     * @param string        $class
+     * @param string        $style
      *
      * @return string
      */
@@ -63,7 +64,8 @@ class ImageViewHelper extends AbstractViewHelper
         bool $plainCssClass = false,
         string $alt = '',
         string $title = '',
-        string $class = ''
+        string $class = '',
+        string $style = ''
     ): string
     {
         list($aspectRatioWidth, $aspectRatioHeight) = $this->parseAspectRatio($aspectRatio);
@@ -88,6 +90,7 @@ class ImageViewHelper extends AbstractViewHelper
         $responsiveImage->setTitle($title);
         $responsiveImage->setWidth($width);
         $responsiveImage->setClass($class);
+        $responsiveImage->setStyle($style);
 
         return $responsiveImage->getImgTag();
     }

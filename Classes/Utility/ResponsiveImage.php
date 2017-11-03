@@ -122,6 +122,11 @@ class ResponsiveImage
     protected $class = '';
 
     /**
+     * @var string
+     */
+    protected $style = '';
+
+    /**
      * @param FileReference $fileReference
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
@@ -230,6 +235,22 @@ class ResponsiveImage
     }
 
     /**
+     * @return string
+     */
+    public function getStyle(): string
+    {
+        return $this->style;
+    }
+
+    /**
+     * @param string $style
+     */
+    public function setStyle(string $style)
+    {
+        $this->style = $style;
+    }
+
+    /**
      * @return array
      */
     public function getProcessedImages(): array
@@ -299,7 +320,12 @@ class ResponsiveImage
         if (!empty($this->class)) {
             $tagBuilder->addAttribute('class', $this->class);
         }
-        
+
+        // Add style
+        if (!empty($this->style)) {
+            $tagBuilder->addAttribute('style', $this->style);
+        }
+
         return $tagBuilder->render();
     }
 
