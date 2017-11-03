@@ -55,8 +55,8 @@ class ImageViewHelper extends AbstractViewHelper
      */
     public function render(
         FileReference $fileReference,
-        array $responsiveSizes,
-        int $defaultMaxWidth,
+        array $responsiveSizes = [],
+        int $defaultMaxWidth = 0,
         string $aspectRatio = '0x0',
         int $width = 0,
         bool $plainCssClass = false,
@@ -73,10 +73,12 @@ class ImageViewHelper extends AbstractViewHelper
             $responsiveSizes,
             $defaultMaxWidth
         );
+
         if ($aspectRatioWidth > 0 && $aspectRatioHeight > 0) {
             $responsiveImage->setAspectRatio($aspectRatioWidth, $aspectRatioHeight);
         }
         $responsiveImage->render();
+
         if ($plainCssClass) {
             return $responsiveImage->getCssClassName();
         }

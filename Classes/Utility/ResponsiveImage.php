@@ -121,7 +121,7 @@ class ResponsiveImage
      * @param array         $responsiveSizes
      * @param int           $defaultMaxWidth
      */
-    public function __construct(FileReference $fileReference, array $responsiveSizes, int $defaultMaxWidth)
+    public function __construct(FileReference $fileReference, array $responsiveSizes = [], int $defaultMaxWidth = 0)
     {
         $this->setFile($fileReference);
         $this->setResponsiveSizes($responsiveSizes);
