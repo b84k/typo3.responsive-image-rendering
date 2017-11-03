@@ -326,11 +326,14 @@ class ResponsiveImage
         }
         $tagBuilder->addAttribute('src', $src);
 
-        $srcset = [];
-        foreach ($this->responsiveImages as $viewPort => $responsiveImage) {
-            $srcset[] = $responsiveImage . ' ' . $viewPort;
+        // Add srcset if responsive images are available
+        if (!empty($this->responsiveImages)) {
+            $srcset = [];
+            foreach ($this->responsiveImages as $viewPort => $responsiveImage) {
+                $srcset[] = $responsiveImage . ' ' . $viewPort;
+            }
+            $tagBuilder->addAttribute('srcset', implode(', ', $srcset));
         }
-        $tagBuilder->addAttribute('srcset', implode(', ', $srcset));
 
         $alt = $this->fileReference->getProperty('alternative') ?: $this->alternative;
         $tagBuilder->addAttribute('alt', $alt);
