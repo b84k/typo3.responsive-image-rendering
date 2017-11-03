@@ -5,12 +5,9 @@ Fluid-ViewHelper for rendering your images as responsive images.
 ## Syntax
 
 #### fileReference
-
-Type: \TYPO3\CMS\Core\Resource\FileReference
-
-Description: File reference of the image to display.
-
-Required: yes
+**Type**: \TYPO3\CMS\Core\Resource\FileReference<br/>
+**Description**: File reference of the image to display.<br/>
+**Required**: yes
 
 #### responsiveSizes
 
